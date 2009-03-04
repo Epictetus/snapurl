@@ -1,8 +1,10 @@
 =begin
-* Name:
-* Description   
-* Author:
-* Date:
+* Name: SnapUrl
+* Description:
+*   This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond
+*   (http://www.paulhammond.org/webkit2png/) with some minor modifications.
+* Author: Juris Galang (http://www.JurisGalang.com)
+* Date: 09/15/08
 * License:
 =end
 require 'digest/md5'

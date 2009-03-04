@@ -1,26 +1,37 @@
 = snapurl
 
-* FIX (url)
+* http://www.jurisgalang.com/articles/show/SnapUrl
 
 == DESCRIPTION:
 
-FIX (describe your package)
+This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond
+(http://www.paulhammond.org/webkit2png/) with some minor modifications.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* OS X only. 
+* Requires RubyCocoa (Leopard will already have this installed)
+* Requires Ruby 1.8.7 (Ruby 1.9.x wont play with RubyCocoa)
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+   Just pass a list of URLs to the snapurl script and it will take a snapshot of the pages found in those URLs:
+
+   $ snapurl http://artists.gawker.com/                 # takes a snapshot of gawker artists
+   $ snapurl http://io9.com/ http://artists.gawker.com/ # ... and io9 websites.
+
+   By default snapurl generates a set of files per URL that it processes: thumbnail, clipped, and full sized 
+   view of the web pages in PNG format. 
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* OS X
+* Ruby 1.8.7
+* RubyCocoa 
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install snapurl-0.0.1.gem
 
 == LICENSE:
 
