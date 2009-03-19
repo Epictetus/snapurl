@@ -70,7 +70,7 @@ module SnapUrl
       attr_accessor :options, :urls, :logger
 
       def urls=(urls)
-        @urls = urls.respond_to?('shift') ? urls : [urls]
+        @urls = urls.to_a
       end
     
       def options=(options)
