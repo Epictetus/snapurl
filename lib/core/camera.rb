@@ -140,13 +140,13 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
         url = @urls.shift
+	url = url.gsub(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
 
         resetWebView(webview)
         webview.mainFrame.loadRequest(OSX::NSURLRequest.requestWithURL(OSX::NSURL.URLWithString(url)))
 
         return if webview.mainFrame.provisionalDataSource
-        @logger.warn "URL '#{url}' looks funky, is it correct?"
 
         fetchUrl(webview)
       end
