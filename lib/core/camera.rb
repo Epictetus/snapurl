@@ -140,7 +140,7 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
         url = String.new(@urls.shift)
-	url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
+        url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
 
         resetWebView(webview)
