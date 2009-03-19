@@ -139,8 +139,8 @@ module SnapUrl
       def fetchUrl(webview)
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
-        url = @urls.shift
-	url = url.gsub(/^/, "http:\/\/") unless url =~ /^http:\/\//
+        url = String.new(@urls.shift)
+	url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
 
         resetWebView(webview)
