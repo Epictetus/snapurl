@@ -8,8 +8,6 @@
 * License:
 =end
 
-autoload :Ping, 'Ping'
-
 module SnapUrl
   module Camera
     DEFAULT_OPTIONS = {
@@ -143,20 +141,20 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
         url = String.new(@urls.shift)
-	unless Ping.pingecho(url.gsub(/^http:\/\//, ''), 10, 80)
-	  @logger.error "Can't resolve #{url}... aborting!"
-	  fetchUrl(webview)
-	  return
-	end
-	url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
+        unless Ping.pingecho(url.gsub(/^http:\/\//, ''), 10, 80)
+          @logger.warn "Can't resolve #{url} - skipping!"
+          fetchUrl(webview)
+          return
+        end
+
+        url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
 
         resetWebView(webview)
         webview.mainFrame.loadRequest(OSX::NSURLRequest.requestWithURL(OSX::NSURL.URLWithString(url)))
 
         return if webview.mainFrame.provisionalDataSource
-
-        #fetchUrl(webview)
+        fetchUrl(webview)
       end
 
       def makeFilename(url, bitmap, format)
