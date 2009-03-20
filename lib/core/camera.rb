@@ -145,7 +145,8 @@ module SnapUrl
         url = String.new(@urls.shift)
 	unless Ping.pingecho(url.gsub(/^http:\/\//, ''), 10, 80)
 	  @logger.error "Can't resolve #{url}... aborting!"
-	  OSX::NSApplication.sharedApplication.terminate(self)
+	  fetchUrl(webview)
+	  return
 	end
 	url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
