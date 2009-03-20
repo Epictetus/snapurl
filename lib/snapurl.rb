@@ -19,7 +19,7 @@ OSX.require_framework 'WebKit'
 require 'core/camera'
 require 'core/application'
 
-Version = "0.0.1"
+Version = "0.0.2"
 Release = "alpha"
 
 module SnapUrl
