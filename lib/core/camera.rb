@@ -7,6 +7,9 @@
 * Date: 09/15/08
 * License:
 =end
+
+autoload :Ping, 'Ping'
+
 module SnapUrl
   module Camera
     DEFAULT_OPTIONS = {
@@ -140,6 +143,10 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
         url = String.new(@urls.shift)
+	unless Ping.pingecho(url.gsub(/^http:\/\//, ''), 10, 80)
+	  @logger.error "Can't resolve #{url}... aborting!"
+	  OSX::NSApplication.sharedApplication.terminate(self)
+	end
 	url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
         @logger.info "Fetching #{url}..." 
 
@@ -148,7 +155,7 @@ module SnapUrl
 
         return if webview.mainFrame.provisionalDataSource
 
-        fetchUrl(webview)
+        #fetchUrl(webview)
       end
 
       def makeFilename(url, bitmap, format)
