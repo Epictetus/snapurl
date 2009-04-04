@@ -17,8 +17,8 @@ This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond
 
    Just pass a list of URLs to the snapurl script and it will take a snapshot of the pages found in those URLs:
 
-   $ snapurl http://artists.gawker.com/                 # takes a snapshot of gawker artists
-   $ snapurl http://io9.com/ http://artists.gawker.com/ # ... and io9 websites.
+   $ snapurl http://artists.gawker.com/                  # takes a snapshot of gawker artists
+   $ snapurl http://io9.com/ http://artists.gawker.com/  # ... and io9 websites.
 
    By default snapurl generates a set of files per URL that it processes: thumbnail, clipped, and full sized 
    view of the web pages in PNG format. 
@@ -29,9 +29,11 @@ This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond
 * Ruby 1.8.7
 * RubyCocoa 
 
-== INSTALL:
+== BUILD AND INSTALL:
 
-* sudo gem install snapurl-0.0.1.gem
+* sudo rake install_cocoa
+* rake package
+* sudo gem install pkg/snapurl-0.0.2.gem
 
 == LICENSE:
 
