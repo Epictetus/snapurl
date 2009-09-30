@@ -12,7 +12,7 @@ require 'fileutils'
 require 'logger'
 require 'optparse'
 require 'ostruct'
-require 'ping'
+require 'open-uri'
 
 require 'osx/cocoa'
 OSX.require_framework 'WebKit'

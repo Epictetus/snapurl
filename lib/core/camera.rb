@@ -141,13 +141,13 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
 
         url = String.new(@urls.shift)
-        unless Ping.pingecho(url.gsub(/^http:\/\//, ''), 10, 80)
+        unless ping(url)
           @logger.warn "Can't resolve #{url} - skipping!"
           fetchUrl(webview)
           return
         end
 
-        url.gsub!(/^/, "http:\/\/") unless url =~ /^http:\/\//
+        url.gsub!(/^/, "http:\/\/") unless url =~ /^http(s)?:\/\//
         @logger.info "Fetching #{url}..." 
 
         resetWebView(webview)
@@ -211,6 +211,10 @@ module SnapUrl
         name = makeFilename(url, bitmap, format)
         FileUtils.mkdir_p File.dirname(name)
         bitmap.representationUsingType_properties(OSX::NSPNGFileType, nil).writeToFile_atomically(name, true) 
+      end
+
+      def ping(url)
+        open(url) rescue nil
       end
     
       def method_missing(name, *args)
