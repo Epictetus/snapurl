@@ -18,7 +18,7 @@ module SnapUrl
       :filename              => '',
       :datestampInFilename?  => false,
       :timestampInFilename?  => false,
-      :sizeInFilename?       => false, 
+      :sizeInFilename?       => false,
       :snapFormatInFilename? => false,
       :useHashForFilename?   => false,
       :outputDirectory       => Dir.pwd,
@@ -35,7 +35,7 @@ module SnapUrl
 
       # create a webview object
       rect    = OSX::NSMakeRect(-16000, -16000, 100, 100)
-      webview = OSX::WebView.alloc.initWithFrame(rect) 
+      webview = OSX::WebView.alloc.initWithFrame(rect)
       webview.setMediaStyle('screen')
       webview.mainFrame.frameView.setAllowsScrolling(false)
 
@@ -63,7 +63,7 @@ module SnapUrl
     class AppDelegate < OSX::NSObject
       def applicationDidFinishLaunching(aNotification)
         webview = aNotification.object.windows.objectAtIndex(0).contentView
-        webview.frameLoadDelegate.fetchUrl(webview) 
+        webview.frameLoadDelegate.fetchUrl(webview)
       end
     end
 
@@ -73,11 +73,11 @@ module SnapUrl
       def urls=(urls)
         @urls = urls.to_a
       end
-    
+
       def options=(options)
         # adjust configs
         options[:snapFormatInFilename?] = true if (options[:snapFormat].size > 1) && !options[:snapFormatInFilename?]
-      
+
         w = options[:clip][:width]  / options[:scaleFactor]
         h = options[:clip][:height] / options[:scaleFactor]
         options[:browser][:width]  = w unless w < options[:browser][:width]
@@ -85,7 +85,7 @@ module SnapUrl
 
         @options = options
       end
-    
+
       def init
         @logger = Logger.new(STDOUT)
         self
@@ -97,7 +97,7 @@ module SnapUrl
       end
 
       def webView_didFailProvisionalLoadWithError_forFrame(webview, error, frame)
-        @logger.warn "#{error.localizedDescription}" 
+        @logger.warn "#{error.localizedDescription}"
         fetchUrl(webview)
       end
 
@@ -106,13 +106,13 @@ module SnapUrl
         return unless (frame == webview.mainFrame)
         docview = frame.frameView.documentView
         resizeWebView(docview)
-      
-        @logger.info "Capturing..." 
+
+        @logger.info "Capturing..."
         url = frame.dataSource.initialRequest.URL.absoluteString
-        bitmap = captureView(docview)  
+        bitmap = captureView(docview)
         saveImages(url, bitmap)
 
-        @logger.info "Done!" 
+        @logger.info "Done!"
         fetchUrl(webview)
       end
 
@@ -138,7 +138,7 @@ module SnapUrl
       end
 
       def fetchUrl(webview)
-        OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty? 
+        OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty?
 
         url = String.new(@urls.shift)
         unless ping(url)
@@ -148,7 +148,7 @@ module SnapUrl
         end
 
         url.gsub!(/^/, "http:\/\/") unless url =~ /^http(s)?:\/\//
-        @logger.info "Fetching #{url}..." 
+        @logger.info "Fetching #{url}..."
 
         resetWebView(webview)
         webview.mainFrame.loadRequest(OSX::NSURLRequest.requestWithURL(OSX::NSURL.URLWithString(url)))
@@ -175,7 +175,7 @@ module SnapUrl
         name = "#{Time.now.strftime('%Y%m%d')}-#{name}"            if datestampInFilename?
         name = "#{name}-#{bitmap.pixelsWide}x#{bitmap.pixelsHigh}" if sizeInFilename?
         name = "#{name}-#{format}"                                 if snapFormatInFilename?
-      
+
         name = "#{name}.png"
 
         name = File.join(File.expand_path(outputDirectory), name)  unless outputDirectory.empty?
@@ -184,7 +184,7 @@ module SnapUrl
 
       def saveImages(url, bitmap)
         writeToFile(url, bitmap, :fullsize) if snapFormat.include?(:fullsize)
-      
+
         if snapFormat.include?(:thumbnail) || snapFormat.include?(:clip)
           # work out how big the thumbnail is
           thumbWidth  = bitmap.pixelsWide * scaleFactor
@@ -201,22 +201,22 @@ module SnapUrl
           clipping  = OSX::NSBitmapImageRep.alloc.initWithFocusedViewRect(clipRect)
           scratch.unlockFocus
 
-          # save the thumbnails as pngs 
+          # save the thumbnails as pngs
           writeToFile(url, thumbnail, :thumbnail) if snapFormat.include?(:thumbnail)
           writeToFile(url, clipping, :clip)   if snapFormat.include?(:clip)
         end
       end
-  
-      def writeToFile(url, bitmap, format) 
+
+      def writeToFile(url, bitmap, format)
         name = makeFilename(url, bitmap, format)
         FileUtils.mkdir_p File.dirname(name)
-        bitmap.representationUsingType_properties(OSX::NSPNGFileType, nil).writeToFile_atomically(name, true) 
+        bitmap.representationUsingType_properties(OSX::NSPNGFileType, nil).writeToFile_atomically(name, true)
       end
 
       def ping(url)
         open(url) rescue nil
       end
-    
+
       def method_missing(name, *args)
         if args.empty?
           k = name.to_sym
