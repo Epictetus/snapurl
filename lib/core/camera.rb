@@ -141,13 +141,8 @@ module SnapUrl
         OSX::NSApplication.sharedApplication.terminate(self) if @urls.empty?
 
         url = String.new(@urls.shift)
-        unless ping(url)
-          @logger.warn "Can't resolve #{url} - skipping!"
-          fetchUrl(webview)
-          return
-        end
 
-        url.gsub!(/^/, "http:\/\/") unless url =~ /^http(s)?:\/\//
+        url.gsub!(/^/, "http:\/\/") unless url =~ /^(http(s)?|file):\/\//
         @logger.info "Fetching #{url}..."
 
         resetWebView(webview)
