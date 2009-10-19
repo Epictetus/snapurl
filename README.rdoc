@@ -11,11 +11,12 @@ See also: http://www.jurisgalang.com/articles/show/SnapUrl
   * RubyCocoa (Leopard and Snow Leopard will already have this installed)
   * Ruby 1.8.7 (Ruby 1.9.x wont play with RubyCocoa)
 
-If you intend to work with the source and do your own builds, you'll want to have the following gems installed:
+If you intend to work with the source and do your own builds, the project expects that you have the following gems installed:
 
+  * gemcutter
   * jeweler
-  * thoughtbot-shoulda
   * rcov
+  * thoughtbot-shoulda
  
 
 == Installation
