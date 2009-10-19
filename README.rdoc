@@ -1,8 +1,8 @@
 = snapurl
 
-http://www.jurisgalang.com/articles/show/SnapUrl
-
 Take snapshots of web pages. This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond (http://www.paulhammond.org/webkit2png/) with some minor modifications.
+
+See also: http://www.jurisgalang.com/articles/show/SnapUrl
 
   
 == Requirements:
@@ -40,7 +40,7 @@ Alternatively you can build the gem from source and install:
 If you have a custom Ruby installation then you'll also need to do a custom build and install of RubyCocoa. I've bundled the latest release source and a script to do this for you:
 
   $ cd snapurl
-  $ ./thirdparty/install-rubycocoa
+  $ ./thirdparty/install-cocoa
 
 NOTE: Your custom Ruby installation must have had `--enable-shared` flag on when you built it.
 

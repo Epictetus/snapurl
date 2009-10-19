@@ -1,6 +1,6 @@
 === 0.0.3 / 2009-10-19
 
-* Added install-rubycocoa script.
+* Added install-cocoa script.
 * Moved to Jeweler for package/project management
   (http://github.com/technicalpickles/jeweler)
 * Added support for file:// urls - thanks to Joel Chippindale
