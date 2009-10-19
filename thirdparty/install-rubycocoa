@@ -2,7 +2,6 @@
 
 #
 # Build and install RubyCocoa.
-#
 # Author: Juris Galang
 #
 # Use this script only if you have a custom Ruby installation. If you are using
@@ -12,14 +11,22 @@
 # Otherwise, you must also make sure that you built Ruby with the 
 # --enable-shared flag on.
 #
+# If you want the latest, you can also pull it down from RubyCocoa's 
+# repository:
+#
+# svn co \
+#   https://rubycocoa.svn.sourceforge.net/svnroot/rubycocoa/trunk \
+#   tmp
+#
+INSTALL_DIR=`dirname "$0"`/..
+cd $INSTALL_DIR/
 
-# pull down release 1.0.1 for RubyCocoa
-svn co \
-   https://rubycocoa.svn.sourceforge.net/svnroot/rubycocoa/tags/release-1_0_1/src \
-   tmp/rubycocoa
+# extract bundled RubyCocoa source
+mkdir -p tmp
+tar -C tmp -zxf thirdparty/rubycocoa-1.0.1.tgz
 
-# build and install RubyCocoa 
-pushd tmp/rubycocoa
+# build and install 
+pushd tmp/rubycocoa-1.0.1
 ruby install.rb config --target-archs='x86_64 i386'
 ruby install.rb setup
 sudo ruby install.rb install

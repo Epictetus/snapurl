@@ -20,7 +20,7 @@ If you intend to work with the source and do your own builds, you'll want to hav
 
 == Installation
 
-This gem is published at Tumbler, so you'll want to add blah-blah-blah.
+This gem is published at blah-blah, so you'll want to add blah-blah-blah.
   
   $ gem sources -a http://gemcutter.org 
   $ sudo gem install jurisgalang-snapurl
@@ -33,6 +33,16 @@ Alternatively you can build the gem from source and install:
   $ rake gemspec
   $ rake build
   $ sudo gem install pkg/jurisgalang-snapurl-0.0.3.gem
+
+
+== Install RubyCocoa
+
+If you have a custom Ruby installation then you'll also need to do a custom build and install of RubyCocoa. I've bundled the latest release source and a script to do this for you:
+
+  $ cd snapurl
+  $ ./thirdparty/install-rubycocoa
+
+NOTE: Your custom Ruby installation must have had `--enable-shared` flag on when you built it.
 
 
 == Usage
@@ -57,7 +67,7 @@ By default snapurl generates a set of files per URL that it processes: thumbnail
   * Send me a pull request. Bonus points for topic branches.
 
 
-== License:
+== License
 
 (The MIT License)
 
