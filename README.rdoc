@@ -1,61 +1,90 @@
 = snapurl
 
-* http://www.jurisgalang.com/articles/show/SnapUrl
+http://www.jurisgalang.com/articles/show/SnapUrl
 
-== DESCRIPTION:
+Take snapshots of web pages. This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond (http://www.paulhammond.org/webkit2png/) with some minor modifications.
 
-This is a Ruby/RubyCocoa port of the webkit2png.py script by Paul Hammond
-(http://www.paulhammond.org/webkit2png/) with some minor modifications.
+  
+== Requirements:
 
-== FEATURES/PROBLEMS:
+  * OS X only.
+  * RubyCocoa (Leopard and Snow Leopard will already have this installed)
+  * Ruby 1.8.7 (Ruby 1.9.x wont play with RubyCocoa)
 
-* OS X only. 
-* Requires RubyCocoa (Leopard will already have this installed)
-* Requires Ruby 1.8.7 (Ruby 1.9.x wont play with RubyCocoa)
+If you intend to work with the source and do your own builds, you'll want to have the following gems installed:
 
-== SYNOPSIS:
+  * jeweler
+  * thoughtbot-shoulda
+  * rcov
+ 
 
-   Just pass a list of URLs to the snapurl script and it will take a snapshot of the pages found in those URLs:
+== Installation
+
+This gem is published at Tumbler, so you'll want to add blah-blah-blah.
+  
+  $ gem sources -a http://gemcutter.org 
+  $ sudo gem install jurisgalang-snapurl
+
+Alternatively you can build the gem from source and install:
+
+  $ git clone ...
+  $ cd snapurl
+  $ git checkout dsjkfsdf
+  $ rake gemspec
+  $ rake build
+  $ sudo gem install pkg/jurisgalang-snapurl-0.0.3.gem
+
+
+== Usage
+
+Just pass a list of URLs to the snapurl script and it will take a snapshot of the pages found in those URLs:
 
    $ snapurl http://artists.gawker.com/                  # takes a snapshot of gawker artists
    $ snapurl http://io9.com/ http://artists.gawker.com/  # ... and io9 websites.
 
-   By default snapurl generates a set of files per URL that it processes: thumbnail, clipped, and full sized 
-   view of the web pages in PNG format. 
+By default snapurl generates a set of files per URL that it processes: thumbnail, clipped, and full-sized view of the web pages in PNG format. 
 
-== REQUIREMENTS:
 
-* OS X
-* Ruby 1.8.7
-* RubyCocoa 
+== Note on Patches/Pull Requests
 
-== BUILD AND INSTALL:
+  * Fork the project.
+  * Make your feature addition or bug fix.
+  * Add tests for it. This is important so I don't break it in a
+    future version unintentionally.
+  * Commit, do not mess with rakefile, version, or history.
+    (if you want to have your own version, that is fine but
+    bump version in a commit by itself I can ignore when I pull)
+  * Send me a pull request. Bonus points for topic branches.
 
-* sudo rake install_cocoa
-* rake package
-* sudo gem install pkg/snapurl-0.0.2.gem
 
-== LICENSE:
+== License:
 
 (The MIT License)
 
-Copyright (c) 2009 FIX
+Copyright (c) 2008, 2009 Juris Galang
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
 
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Except as contained in this notice, the name(s) of the above 
+copyright holders shall not be used in advertising or otherwise to 
+promote the sale, use or other dealings in this Software without 
+prior written authorization.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.

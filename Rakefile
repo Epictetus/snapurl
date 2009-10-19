@@ -1,32 +1,62 @@
-# -*- ruby -*-
-
-$:.unshift File::join(File::dirname(__FILE__), 'lib')
-
 require 'rubygems'
-require 'hoe'
-require './lib/snapurl.rb'
+require 'rake'
 
-Hoe.new('snapurl', SnapUrl::VERSION) do |p|
-  p.rubyforge_name = 'SnapUrl'
-  p.developer('Juris Galang', 'jurisgalang@gmail.com')
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name        = "jurisgalang-snapurl"
+    gem.summary     = %Q{Take snapshots of websites.}
+    gem.description = %Q{
+      Take snapshots of websites. This is a Ruby/RubyCocoa port of the 
+      webkit2png.py script by Paul Hammond 
+      (http://www.paulhammond.org/webkit2png/) with some minor modifications -
+      Generates a set of image files representing the thumbnail, clipped, 
+      and full-sized view of a web page in PNG format. }
+    gem.email       = "jurisgalang@gmail.com"
+    gem.homepage    = "http://github.com/jurisgalang/snapurl"
+    gem.authors     = ["Juris Galang", "Michael Kohl", "Joel Chippindale"]
+    gem.executables = [ 'snapurl' ]
+    gem.files       = FileList["[A-Z]*.*", "History", "{bin,generators,lib,test,spec,thirdparty}/**/*"]
+    gem.add_development_dependency "thoughtbot-shoulda"
+  end
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-desc "Remove additional work directories for build."
-task :clean do
-  sh "rm -rf tmp"
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
 end
 
-desc "Installs RubyCocoa (you only need to do this once)"
-task :install_cocoa => :clean do
-  fail "RubyCocoa might not work for Ruby version > 1.8.7, you are using version #{RUBY_VERSION}" unless RUBY_VERSION <= "1.8.7"
-  RUBYCOCOA = "RubyCocoa-0.13.2"
-  sh "mkdir -p tmp && tar zxf thirdparty/#{RUBYCOCOA}.tgz -C tmp" 
-  Dir.chdir("tmp/#{RUBYCOCOA}") do
-    sh "ruby install.rb config"
-    sh "ruby install.rb setup"
-    sh "ruby install.rb install"
+begin
+  require 'rcov/rcovtask'
+  Rcov::RcovTask.new do |test|
+    test.libs << 'test'
+    test.pattern = 'test/**/*_test.rb'
+    test.verbose = true
+  end
+rescue LoadError
+  task :rcov do
+    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
   end
 end
 
+task :test => :check_dependencies
 
-# vim: syntax=Ruby
+task :default => :test
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  if File.exist?('VERSION')
+    version = File.read('VERSION')
+  else
+    version = ""
+  end
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "snapurl #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end

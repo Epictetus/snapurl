@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#
+# Build and install RubyCocoa.
+#
+# Author: Juris Galang
+#
+# Use this script only if you have a custom Ruby installation. If you are using
+# the default from OS X (assuming you've got Leopard or Snow Leopard) then you
+# don't need to run this script.
+#
+# Otherwise, you must also make sure that you built Ruby with the 
+# --enable-shared flag on.
+#
+
+# pull down release 1.0.1 for RubyCocoa
+svn co \
+   https://rubycocoa.svn.sourceforge.net/svnroot/rubycocoa/tags/release-1_0_1/src \
+   tmp/rubycocoa
+
+# build and install RubyCocoa 
+pushd tmp/rubycocoa
+ruby install.rb config --target-archs='x86_64 i386'
+ruby install.rb setup
+sudo ruby install.rb install
+
+# clean-up
+popd
+rm -r tmp

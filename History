@@ -1,0 +1,20 @@
+=== 0.0.3 / 2009-10-19
+
+* Added install-rubycocoa script.
+* Moved to Jeweler for package/project management
+  (http://github.com/technicalpickles/jeweler)
+* Added support for file:// urls - thanks to Joel Chippindale
+  (http://blog.monkeysthumb.org) 
+* Added dependency to thoughtbot-shoulda 
+  (http://thoughtbot.com/projects/shoulda)
+* Gem name is now jurisgalang-snapurl
+
+=== 0.0.2 / 2009-04-04
+
+* Light house-keeping.
+* Merged changes by Michael Kohl (http://citizen428.net)
+* Added RubyCocoa source package and installation task.
+
+=== 0.0.1 / 2009-02-08
+
+* Birthday!
