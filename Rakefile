@@ -19,7 +19,6 @@ begin
     gem.files       = FileList["[A-Z]*.*", "History", "{bin,generators,lib,test,spec,thirdparty}/**/*"]
     gem.add_development_dependency "thoughtbot-shoulda"
   end
-  
   Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"

@@ -20,19 +20,24 @@ If you intend to work with the source and do your own builds, you'll want to hav
 
 == Installation
 
-This gem is published at blah-blah, so you'll want to add blah-blah-blah.
-  
-  $ gem sources -a http://gemcutter.org 
   $ sudo gem install jurisgalang-snapurl
 
+This gem is published at gemcutter (http://gemcutter.org), so you'll need to add it as a gem source (unless you already have):
+  
+  $ gem sources -a http://gemcutter.org 
+  
 Alternatively you can build the gem from source and install:
 
-  $ git clone ...
+  $ git clone git://github.com/jurisgalang/snapurl.git
   $ cd snapurl
-  $ git checkout dsjkfsdf
-  $ rake gemspec
-  $ rake build
-  $ sudo gem install pkg/jurisgalang-snapurl-0.0.3.gem
+  $ rake gemspec install
+
+To build and install a specific tag:
+
+  $ git clone git://github.com/jurisgalang/snapurl.git
+  $ cd snapurl
+  $ git checkout -f -b `whoami`-snapurl v0.0.3
+  $ rake gemspec install
 
 
 == Install RubyCocoa
@@ -42,7 +47,7 @@ If you have a custom Ruby installation then you'll also need to do a custom buil
   $ cd snapurl
   $ ./thirdparty/install-cocoa
 
-NOTE: Your custom Ruby installation must have had `--enable-shared` flag on when you built it.
+NOTE: Your custom Ruby installation must have had --enable-shared flag on when you built it.
 
 
 == Usage
