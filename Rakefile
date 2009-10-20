@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name        = "jurisgalang-snapurl"
+    gem.name        = "snapurl"
     gem.summary     = %Q{Take snapshots of websites.}
     gem.description = %Q{
       Take snapshots of websites. This is a Ruby/RubyCocoa port of the 
@@ -16,7 +16,7 @@ begin
     gem.homepage    = "http://github.com/jurisgalang/snapurl"
     gem.authors     = ["Juris Galang", "Michael Kohl", "Joel Chippindale"]
     gem.executables = [ 'snapurl' ]
-    gem.files       = FileList["[A-Z]*.*", "History", "{bin,generators,lib,test,spec,thirdparty}/**/*"]
+    gem.files       = FileList["[A-Z]*.*", "History", "{bin,generators,lib,test,spec}/**/*"]
     gem.add_development_dependency "thoughtbot-shoulda"
   end
   Jeweler::GemcutterTasks.new

@@ -21,7 +21,7 @@ If you intend to work with the source and do your own builds, the project expect
 
 == Installation
 
-  $ sudo gem install jurisgalang-snapurl
+  $ sudo gem install snapurl
 
 This gem is published at gemcutter (http://gemcutter.org), so you'll need to add it as a gem source (unless you already have):
   
